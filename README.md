@@ -35,8 +35,8 @@
 
 ## System Requirements
 
-- [git][git] v2 or greater
-- [NodeJS][node] v10 or greater
+- [git][git] v2.13 or greater
+- [NodeJS][node] `^10.13 || 12 || 14`
 - [npm][npm] v6 or greater
 
 All of these must be available in your `PATH`. To verify things are set up
@@ -54,13 +54,17 @@ variable and how to fix it here for [windows][win-path] or
 
 ## Setup
 
+> If you want to commit and push your work as you go, you'll want to
+> [fork](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo)
+> first and then clone your fork rather than this repo directly.
+
 After you've made sure to have the correct things (and versions) installed, you
 should be able to just run a few commands to get set up:
 
 ```
 git clone https://github.com/kentcdodds/react-hooks.git
 cd react-hooks
-npm run setup --silent
+node setup
 ```
 
 This may take a few minutes. **It will ask you for your email.** This is
@@ -71,6 +75,20 @@ If you get any errors, please read through them and see if you can find out what
 the problem is. If you can't work it out on your own then please [file an
 issue][issue] and provide _all_ the output from the commands you ran (even if
 it's a lot).
+
+If you can't get the setup script to work, then just make sure you have the
+right versions of the requirements listed above, and run the following commands:
+
+```
+npm install
+npm run validate
+```
+
+It's recommended you run everything locally in the same environment you work in
+every day, but if you're having issues getting things set up, you can also set
+this up using [GitHub Codespaces](https://github.com/features/codespaces)
+([video demo](https://www.youtube.com/watch?v=gCoVJm3hGk4)) or
+[Codesandbox](https://codesandbox.io/s/github/kentcdodds/react-hooks).
 
 ## Running the app
 
@@ -156,12 +174,32 @@ Thanks goes to these wonderful people
     <td align="center"><a href="https://github.com/gugol2"><img src="https://avatars0.githubusercontent.com/u/4933016?v=4" width="100px;" alt=""/><br /><sub><b>Watchmaker</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/issues?q=author%3Agugol2" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://dschapman.com"><img src="https://avatars3.githubusercontent.com/u/36767987?v=4" width="100px;" alt=""/><br /><sub><b>Daniel Chapman</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=dschapman" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/flofehrenbacher"><img src="https://avatars0.githubusercontent.com/u/18660708?v=4" width="100px;" alt=""/><br /><sub><b>flofehrenbacher</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=flofehrenbacher" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/pritamsangani/"><img src="https://avatars3.githubusercontent.com/u/22857896?v=4" width="100px;" alt=""/><br /><sub><b>Pritam Sangani</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=PritamSangani" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/emzoumpo"><img src="https://avatars2.githubusercontent.com/u/2103443?v=4" width="100px;" alt=""/><br /><sub><b>Emmanouil Zoumpoulakis</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=emzoumpo" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://peter.hozak.info/"><img src="https://avatars0.githubusercontent.com/u/1087670?v=4" width="100px;" alt=""/><br /><sub><b>Peter Hozák</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=Aprillion" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/timobleeker"><img src="https://avatars0.githubusercontent.com/u/2723586?v=4" width="100px;" alt=""/><br /><sub><b>Timo</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=timobleeker" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://thacher.co"><img src="https://avatars1.githubusercontent.com/u/12368025?v=4" width="100px;" alt=""/><br /><sub><b>Thacher Hussain</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=thacherhussain" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://magrippis.com"><img src="https://avatars0.githubusercontent.com/u/3502800?v=4" width="100px;" alt=""/><br /><sub><b>Johnny Magrippis</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=jmagrippis" title="Code">💻</a></td>
+    <td align="center"><a href="https://twitter.com/apolakipso"><img src="https://avatars2.githubusercontent.com/u/494674?v=4" width="100px;" alt=""/><br /><sub><b>Apola Kipso</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=apolakipso" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Snaptags"><img src="https://avatars1.githubusercontent.com/u/1249745?v=4" width="100px;" alt=""/><br /><sub><b>Markus Lasermann</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=Snaptags" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/degeens"><img src="https://avatars2.githubusercontent.com/u/33414262?v=4" width="100px;" alt=""/><br /><sub><b>Stijn Geens</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=degeens" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/nativedone"><img src="https://avatars2.githubusercontent.com/u/20998754?v=4" width="100px;" alt=""/><br /><sub><b>Adeildo Amorim</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=nativedone" title="Documentation">📖</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/thegoodsheppard"><img src="https://avatars1.githubusercontent.com/u/13774377?v=4" width="100px;" alt=""/><br /><sub><b>Greg Sheppard</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=thegoodsheppard" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://rafaeldavis.dev"><img src="https://avatars0.githubusercontent.com/u/6822714?v=4" width="100px;" alt=""/><br /><sub><b>Rafael D. Hernandez</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=RafaelDavisH" title="Code">💻</a></td>
+    <td align="center"><a href="http://dallascarraher.dev"><img src="https://avatars2.githubusercontent.com/u/4131693?v=4" width="100px;" alt=""/><br /><sub><b>Dallas Carraher</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=DallasCarraher" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/roni-castro"><img src="https://avatars3.githubusercontent.com/u/24610813?v=4" width="100px;" alt=""/><br /><sub><b>Roni Castro</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=roni-castro" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/thebrengun"><img src="https://avatars2.githubusercontent.com/u/15270595?v=4" width="100px;" alt=""/><br /><sub><b>Brennan</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=thebrengun" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://www.daleseo.com"><img src="https://avatars1.githubusercontent.com/u/5466341?v=4" width="100px;" alt=""/><br /><sub><b>Dale Seo</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=DaleSeo" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://michaeldeboey.be"><img src="https://avatars3.githubusercontent.com/u/6643991?v=4" width="100px;" alt=""/><br /><sub><b>Michaël De Boey</b></sub></a><br /><a href="https://github.com/kentcdodds/react-hooks/commits?author=MichaelDeBoey" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the
@@ -181,7 +219,7 @@ Thank you! https://kcd.im/rh-ws-feedback
 [node]: https://nodejs.org
 [git]: https://git-scm.com/
 [build-badge]: https://img.shields.io/travis/kentcdodds/react-hooks.svg?style=flat-square&logo=travis
-[build]: https://travis-ci.org/kentcdodds/react-hooks
+[build]: https://travis-ci.com/kentcdodds/react-hooks
 [license-badge]: https://img.shields.io/badge/license-GPL%203.0%20License-blue.svg?style=flat-square
 [license]: https://github.com/kentcdodds/react-hooks/blob/main/LICENSE
 [coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square

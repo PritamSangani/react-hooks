@@ -1,7 +1,7 @@
 // useEffect: HTTP requests
 // http://localhost:3000/isolated/exercise/06.js
 
-import React from 'react'
+import * as React from 'react'
 // 🐨 you'll want the following additional things from '../pokemon':
 // fetchPokemon: the function we call to get the pokemon info
 // PokemonInfoFallback: the thing we show while we're loading the pokemon info
@@ -20,8 +20,8 @@ function PokemonInfo({pokemonName}) {
   //     pokemonData => { /* update all the state here */},
   //   )
   // 🐨 return the following things based on the `pokemon` state and `pokemonName` prop:
-  //   1. no pokemon name: 'Submit a pokemon'
-  //   2. pokemon name but no pokemon: <PokemonInfoFallback name={pokemonName} />
+  //   1. no pokemonName: 'Submit a pokemon'
+  //   2. pokemonName but no pokemon: <PokemonInfoFallback name={pokemonName} />
   //   3. pokemon: <PokemonDataView pokemon={pokemon} />
 
   // 💣 remove this
