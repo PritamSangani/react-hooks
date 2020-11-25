@@ -4,34 +4,11 @@
 import * as React from 'react'
 import {useLocalStorageState} from '../utils'
 
-function Board() {
-  // const [squares, setSquares] = React.useState(() => JSON.parse(window.localStorage.getItem('squares')) || Array(9).fill(null))
-  const [squares, setSquares] = useLocalStorageState('squares', Array(9).fill(null))
-  const nextValue = calculateNextValue(squares)
-  const winner = calculateWinner(squares)
-  const status = calculateStatus(winner, squares, nextValue)
 
-  // React.useEffect(() => {
-    // window.localStorage.setItem('squares', JSON.stringify(squares))
-  // }, [squares])
-
-  function selectSquare(square) {
-    if (winner || squares[square]) {
-      return
-    }
-    const boardCopy = [...squares]
-    boardCopy[square] = nextValue
-
-    setSquares(boardCopy)
-  }
-
-  function restart() {
-    setSquares(Array(9).fill(null))
-  }
-
+function Board({squares, onMove}) {
   function renderSquare(i) {
     return (
-      <button className="square" onClick={() => selectSquare(i)}>
+      <button className="square" onClick={() => onMove(i)}>
         {squares[i]}
       </button>
     )
@@ -39,7 +16,6 @@ function Board() {
 
   return (
     <div>
-      <div className="status">{status}</div>
       <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
@@ -55,18 +31,64 @@ function Board() {
         {renderSquare(7)}
         {renderSquare(8)}
       </div>
-      <button className="restart" onClick={restart}>
-        restart
-      </button>
     </div>
   )
 }
 
 function Game() {
+  const [currentStep, setCurrentStep] = useLocalStorageState(
+    'tictactoe:currentStep',
+    0,
+  )
+  const [history, setHistory] = useLocalStorageState('tictactoe:history', [
+    Array(9).fill(null),
+  ])
+
+  const currentSquares = history[currentStep]
+  const nextValue = calculateNextValue(currentSquares)
+  const winner = calculateWinner(currentSquares)
+  const status = calculateStatus(winner, currentSquares, nextValue)
+
+  function selectSquare(square) {
+    if (winner || currentSquares[square]) {
+      return
+    }
+    const boardCopy = [...currentSquares]
+    boardCopy[square] = nextValue
+
+    setHistory([...history, boardCopy])
+    setCurrentStep(currentStep + 1)
+  }
+
+  const renderMoves = history.map((stepBoard, stepNumber) => {
+    const buttonLabel = stepNumber === 0 ? 'Go to game start' : `Go to move #${stepNumber}`
+    const isCurrent = stepNumber === currentStep
+
+    return (
+      <li key={stepNumber}>
+        <button disabled={isCurrent} onClick={() => setCurrentStep(stepNumber)}>
+          {buttonLabel} {isCurrent ? ' (current)' : null}
+        </button>
+      </li>
+    )
+  })
+
+  function restart() {
+    setHistory([Array(9).fill(null)])
+    setCurrentStep(0)
+  }
+
   return (
     <div className="game">
       <div className="game-board">
-        <Board />
+        <Board squares={currentSquares} onMove={selectSquare} />
+        <button className="restart" onClick={restart}>
+          restart
+        </button>
+      </div>
+      <div className="game-info">
+        <div>{status}</div>
+        <ul>{renderMoves}</ul>
       </div>
     </div>
   )
@@ -77,8 +99,8 @@ function calculateStatus(winner, squares, nextValue) {
   return winner
     ? `Winner: ${winner}`
     : squares.every(Boolean)
-    ? `Scratch: Cat's game`
-    : `Next player: ${nextValue}`
+      ? `Scratch: Cat's game`
+      : `Next player: ${nextValue}`
 }
 
 // eslint-disable-next-line no-unused-vars
