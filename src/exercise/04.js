@@ -53,11 +53,12 @@ function Game() {
     if (winner || currentSquares[square]) {
       return
     }
+    const newHistory = history.slice(0, currentStep + 1)
     const boardCopy = [...currentSquares]
     boardCopy[square] = nextValue
 
-    setHistory([...history, boardCopy])
-    setCurrentStep(currentStep + 1)
+    setHistory([...newHistory, boardCopy])
+    setCurrentStep(newHistory.length)
   }
 
   const renderMoves = history.map((stepBoard, stepNumber) => {
